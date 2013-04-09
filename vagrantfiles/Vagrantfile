@@ -1,0 +1,27 @@
+# vi: set ft=ruby :
+Vagrant::Config.run do |config|
+    config.vm.box = "quantal"
+    config.vm.box_url = "http://static.aldoborrero.com/vagrant/quantal64.box"
+
+    config.vm.forward_port 8000, 8000
+    config.vm.network :hostonly, "33.33.00.10"
+
+    config.vm.provision :chef_solo do |chef|
+        chef.recipe_url = "https://dl.dropbox.com/u/4311762/cookbooks.tar.gz"
+        chef.cookbooks_path = [:vm, "cookbooks"]
+
+        chef.add_recipe "main"
+        chef.add_recipe "python"
+
+        chef.json.merge!({
+            :project_name => "test",
+            :system_packages => [],
+            :oh_my_zsh => {
+                :theme => "cloud",
+                :plugins => ["git"]
+            },
+            :python_global_packages => ["bpython"],
+            :python_packages => [],
+        })
+    end
+end
