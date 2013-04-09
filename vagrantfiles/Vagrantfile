@@ -12,6 +12,7 @@ Vagrant::Config.run do |config|
 
         chef.add_recipe "main"
         chef.add_recipe "python"
+        chef.add_recipe "less"
 
         chef.json.merge!({
             :project_name => "test",
