@@ -4,3 +4,9 @@
         action :install
     end
 end
+
+if node.has_key?("mysql")
+   execute "Set MySql root password" do
+       command "mysqladmin -u root password " + node[:mysql][:root_password]
+   end
+end
