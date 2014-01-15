@@ -3,4 +3,17 @@ alias djr='dj runserver 0.0.0.0:8000'
 alias djs='dj shell'
 alias djt='dj test'
 
-cd /vagrant/
+# Remove virtual env from start of PS1 as it's in RPROMPT instead
+PS1="$_OLD_VIRTUAL_PS1"
+
+PS1="$FG[135](✓)$reset_color $PS1"
+
+PROJECT_DIR="/vagrant/$(basename $VIRTUAL_ENV)"
+if [ -d $PROJECT_DIR ]; then
+    # If we aren't already within the project dir, cd into it
+    if [[ ! `pwd` == "$PROJECT_DIR*" ]]; then
+        export PRE_VENV_ACTIVATE_DIR=`pwd`
+        cd "$PROJECT_DIR"
+    fi
+fi
+unset PROJECT_DIR
