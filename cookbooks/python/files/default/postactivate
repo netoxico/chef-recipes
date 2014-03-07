@@ -2,6 +2,7 @@ alias dj='python manage.py'
 alias djr='dj runserver 0.0.0.0:8000'
 alias djs='dj shell'
 alias djt='dj test'
+alias djkill='kill -9 `sudo lsof -t -i:8000`'
 
 # Remove virtual env from start of PS1 as it's in RPROMPT instead
 PS1="$_OLD_VIRTUAL_PS1"
