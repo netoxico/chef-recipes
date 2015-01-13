@@ -22,7 +22,7 @@ Vagrant.configure(2) do |config|
                 :theme => "cloud",
                 :plugins => ["git"]
             },
-            :python_global_packages => ["bpython", "--user git+git://github.com/Lokaltog/powerline"],
+            :python_global_packages => ["bpython", "git+git://github.com/Lokaltog/powerline"],
             :python_packages => [],
             :mysql => {
                 :root_password => "root"
